@@ -8,5 +8,6 @@ for i = 1:sz
     S = multiHeston(S0, sigma0, r, kappa(i), theta, delta, rho, lambda, eta, alpha, T, N, P);
     price(i) = multiWCEHPrice(S,xh,r);
 end
+figure;
 plot(kappa, price);
     

@@ -3,10 +3,17 @@
     %S=[S1,S2,S3,...,Sn]
     %xh=[x1,h1; x2,h2; x3,h3; ...; xm,hm]
 
+<<<<<<< HEAD
     n=length(S);
     m=length(xh);
     ret=S(2:n)./S(1:n-1) -1 ;
     totalPayoff=0;
+=======
+n=length(S);
+m=length(xh);
+ret = S(2:n)./S(1:n-1) -1;
+totalPayoff=0;
+>>>>>>> 5c43d9d023c8a3de617257aa64810a55f22f882b
 
     for i=1:n-1
         maxX = 0;
@@ -31,5 +38,15 @@
     end
     v0=totalPayoff;
     end
+<<<<<<< HEAD
 
 
+=======
+    %payoff
+    totalPayoff = totalPayoff + payoff;
+end
+v0=totalPayoff;
+end
+    
+            
+>>>>>>> 5c43d9d023c8a3de617257aa64810a55f22f882b

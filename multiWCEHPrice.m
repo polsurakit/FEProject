@@ -1,4 +1,4 @@
-function v0=multiWCEHPrice(S,xh,r, avg)
+function v0=multiWCEHPrice(S,xh,r)
 
 %avg = 1: return average the payoff, 0: return vector of payoffs
 
