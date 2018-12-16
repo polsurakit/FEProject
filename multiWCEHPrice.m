@@ -16,7 +16,7 @@ for it=1:k
         payoff = 0;
         for j=1:m
             if abs(ret(i)) <= tmp_xh(j,1) && tmp_xh(j,2) > 0
-                payoff = payoff + S(it,i)*tmp_xh(j,2);
+                payoff = payoff + tmp_xh(j,2);
                 if maxX == 0
                     maxX = j;
                 else

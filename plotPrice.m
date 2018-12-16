@@ -1,7 +1,7 @@
 function price = plotPrice(S0, r, sigma, T, P,  xh)
 
 
-sz = length(r);
+sz = length(sigma);
 price = nan(sz, 1);
 for i = 1:sz
     rng(999);
