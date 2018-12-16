@@ -1,13 +1,14 @@
 function plotPrice(S0, r, sigma, T, P,  xh)
 
 
-sz = length(sigma);
+sz = length(T);
 price = nan(sz, 1);
-for i = 1:sz;
+for i = 1:sz
     rng(999);
-    S = simGBM(S0, r, sigma(i), T, T, P);
+    S = simGBM(S0, r, sigma, T(i), T(i), P);
     price(i) = multiWCEHPrice(S,xh,r);
 end
-figure;
-plot(sigma, price);
-    
+h = figure;
+plot(T, price);
+
+
