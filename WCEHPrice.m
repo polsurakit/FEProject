@@ -4,7 +4,7 @@ function v0=WCEHPrice(S,xh,r)
 %xh=[x1,h1; x2,h2; x3,h3; ...; xm,hm]
 
 n=length(S);
-m=length(xh);
+m=length(xh(:,1));
 ret = log(S(2:n)./S(1:n-1));
 totalPayoff=0;
 
