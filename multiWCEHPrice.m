@@ -20,7 +20,7 @@ for it=1:k
                 if maxX == 0
                     maxX = j;
                 else
-                    if tmp_xh(maxX,1) < tmp_xh(j,1)
+                    if tmp_xh(maxX,1) > tmp_xh(j,1)
                         maxX = j;
                     end
                 end

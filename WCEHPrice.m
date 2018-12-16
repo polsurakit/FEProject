@@ -17,7 +17,7 @@ for i=1:n-1
             if maxX == 0
                 maxX = j;
             else
-                if xh(maxX,1) < xh(j,1)
+                if xh(maxX,1) > xh(j,1)
                     maxX = j;
                 end
             end
