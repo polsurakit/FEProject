@@ -7,7 +7,7 @@ n=length(S(1,:));
 m=length(xh(:,1));
 totalPayoff=zeros(k,1);
 for it=1:k
-    ret=S(it,2:n)./S(it,1:n-1) -1 - r;
+    ret=S(it,2:n)./S(it,1:n-1) -1;
     tmp_xh = xh;
     for i=1:n-1
         maxX = 0;
@@ -27,7 +27,7 @@ for it=1:k
         if maxX ~= 0
             tmp_xh(maxX,2)=0;
         end
-        totalPayoff(it,1) = totalPayoff(it,1) + payoff*exp(-r*i);
+        totalPayoff(it,1) = totalPayoff(it,1) + payoff;
     end
 end
 end

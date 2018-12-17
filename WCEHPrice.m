@@ -5,7 +5,7 @@ function v0=WCEHPrice(S,xh,r)
 
 n=length(S);
 m=length(xh(:,1));
-ret = log(S(2:n)./S(1:n-1));
+ret = S(2:n)./S(1:n-1) -1;
 totalPayoff=0;
 
 for i=1:n-1
@@ -27,7 +27,7 @@ for i=1:n-1
         xh(maxX,2)=0;
     end
     %payoff
-    totalPayoff = totalPayoff + payoff*exp(-r*i);
+    totalPayoff = totalPayoff + payoff;
 end
 v0=totalPayoff;
 end
