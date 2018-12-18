@@ -27,7 +27,7 @@ for it=1:k
         if maxX ~= 0
             tmp_xh(maxX,2)=0;
         end
-        totalPayoff(it,1) = totalPayoff(it,1) + payoff;
+        totalPayoff(it,1) = totalPayoff(it,1) + payoff*exp(-r*i);
     end
 end
 end
