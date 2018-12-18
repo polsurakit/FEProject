@@ -22,7 +22,7 @@ function varargout = testgui(varargin)
 
 % Edit the above text to modify the response to help testgui
 
-% Last Modified by GUIDE v2.5 18-Dec-2018 12:34:54
+% Last Modified by GUIDE v2.5 18-Dec-2018 15:03:46
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -46,16 +46,9 @@ end
 
 % --- Executes just before testgui is made visible.
 function testgui_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to testgui (see VARARGIN)
-
-% Choose default command line output for testgui
 handles.output = hObject;
+set(handles.plotagainst,'SelectionChangeFcn',@Btn_callback); 
 
-% Update handles structure
 guidata(hObject, handles);
 
 % UIWAIT makes testgui wait for user response (see UIRESUME)
@@ -196,6 +189,21 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
+function Btn_callback(hObject, eventdata)
+handles = guidata(hObject);
+switch get(eventdata.NewValue,'Tag') % Get Tag of selected object 
+    case 'rswitch'
+        set(handles.plottmp,'String','r');
+    case 'sigmaswitch'
+        set(handles.plottmp,'String','sigma');
+    case 'Tswitch'
+        set(handles.plottmp,'String','T');
+    case 'noneswitch'
+        set(handles.plottmp,'String','None');
+end
+guidata(hObject, handles)
+
+
 function add_pushbutton_Callback(hObject, eventdata, handles)
 S0 = str2double(get(handles.S0txt,'String'));
 r = str2double(get(handles.rtxt,'String'));
@@ -204,7 +212,30 @@ T = str2double(get(handles.Ttxt,'String'));
 X = str2num(get(handles.Xtxt,'String'));
 H = str2num(get(handles.Htxt,'String'));
 xh = [X;H]';
-S = simGBM(S0, r, sigma, T, T, 1000);
+
+S = simGBM(S0, r, sigma, T, T, 100000);
 v0 = multiWCEHPrice(S,xh,r);
 set(handles.answer_staticText,'String',num2str(v0));
+% set(handles.answer_staticText,'String',get(handles.plottmp,'String'));
+
+
+switch get(handles.plottmp,'String')
+    case 'r'
+        [xval,price] = plotPrice(S0, -0.2:0.005:0.2, sigma, T, 10000,  xh, 'r');
+    case 'sigma'
+        [xval,price] = plotPrice(S0, r, 0:0.005:0.5, T, 10000,  xh, 'sigma');
+    case 'T'
+        [xval,price] = plotPrice(S0, r, sigma, 1:20, 10000,  xh, 'T');
+    case 'None'
+        xval = 1;
+        price = 1;     
+end
+
+
+
+axes(handles.axes1)
+plot(xval,price, 'LineWidth', 2);
+xlabel('r');
+ylabel('Price');
+
 guidata(hObject, handles);
