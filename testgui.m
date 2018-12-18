@@ -218,8 +218,9 @@ v0 = multiWCEHPrice(S,xh,r);
 set(handles.answer_staticText,'String',num2str(v0));
 % set(handles.answer_staticText,'String',get(handles.plottmp,'String'));
 
+xaxislabel = get(handles.plottmp,'String');
 
-switch get(handles.plottmp,'String')
+switch xaxislabel
     case 'r'
         [xval,price] = plotPrice(S0, -0.2:0.005:0.2, sigma, T, 10000,  xh, 'r');
     case 'sigma'
@@ -231,11 +232,10 @@ switch get(handles.plottmp,'String')
         price = 1;     
 end
 
-
-
 axes(handles.axes1)
 plot(xval,price, 'LineWidth', 2);
-xlabel('r');
+xlabel(xaxislabel);
 ylabel('Price');
+datacursormode on
 
 guidata(hObject, handles);
