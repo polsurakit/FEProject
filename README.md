@@ -2,8 +2,8 @@
 
 ## There are 3 folders figandpic, GUI, misc.
 
-### figandpic store all picture and .fig file of this project.
+### figandpic stores all picture and .fig files of this project.
 
-### GUI store all files for GUI.
+### GUI stores all files for GUI.
 
-### misc store the code we made that you might not need to use.
+### misc stores the code we made that you might not need to use.
