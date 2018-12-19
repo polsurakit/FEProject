@@ -81,7 +81,7 @@ function sliderT_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-T = round(get(handles.sliderT,'Value'),2);
+T = round(get(handles.sliderT,'Value'));
 set(handles.editT,'String', num2str(T));
 guidata(hObject, handles);
 
@@ -588,6 +588,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.priceval,'String','Calculating');
 h = waitbar(0,'Please wait...');
+
 S0 = str2double(get(handles.editS0,'String'));
 r = str2double(get(handles.editR,'String'));
 sigma0 = str2double(get(handles.editSigma,'String'));

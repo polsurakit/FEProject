@@ -205,6 +205,9 @@ guidata(hObject, handles)
 
 
 function add_pushbutton_Callback(hObject, eventdata, handles)
+set(handles.answer_staticText,'String','Calculating');
+h = waitbar(0,'Please wait...');
+
 S0 = str2double(get(handles.S0txt,'String'));
 r = str2double(get(handles.rtxt,'String'));
 sigma = str2double(get(handles.sigmatxt,'String'));
@@ -237,6 +240,7 @@ plot(xval,price, 'LineWidth', 2);
 xlabel(xaxislabel);
 ylabel('Price');
 datacursormode on
+close(h)
 
 guidata(hObject, handles);
 
