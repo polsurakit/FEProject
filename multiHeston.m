@@ -33,9 +33,9 @@ for i = 1:N
 %     S_jump = eta*S(:,i).*jump_condition;
 %     var_jump = ((1+alpha)^2 - 1)*var.*jump_condition;
     
-    S(:,i+1) = S(:,i).*exp((r - 0.5 * var)*dt + sqrt(dt*var).*eps1(:,i))
+    S(:,i+1) = S(:,i).*exp((r - 0.5 * var)*dt + sqrt(dt*var).*eps1(:,i));
     
-    var = var + kappa*(theta - var)*dt + delta*sqrt(dt*var).*eps2(:,i)
+    var = var + kappa*(theta - var)*dt + delta*sqrt(dt*var).*eps2(:,i);
     var = max(var,0);
 end
 
