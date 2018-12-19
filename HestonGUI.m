@@ -601,7 +601,7 @@ X = str2num(get(handles.editX,'String'));
 H = str2num(get(handles.editH,'String'));
 xh = [X;H]';
 N = T*250;
-P = 2000;
+P = 1000;
 
 S = multiHeston(S0, sigma0, r, kappa, theta, delta, rho, T, N, 10000);
 v0 = multiWCEHPrice(S,xh,r);
