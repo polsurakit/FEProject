@@ -22,7 +22,7 @@ function varargout = testgui(varargin)
 
 % Edit the above text to modify the response to help testgui
 
-% Last Modified by GUIDE v2.5 18-Dec-2018 15:03:46
+% Last Modified by GUIDE v2.5 19-Dec-2018 13:16:51
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -239,3 +239,11 @@ ylabel('Price');
 datacursormode on
 
 guidata(hObject, handles);
+
+
+% --- Executes on mouse press over figure background, over a disabled or
+% --- inactive control, or over an axes background.
+function figure1_WindowButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
