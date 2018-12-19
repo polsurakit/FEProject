@@ -81,7 +81,7 @@ function sliderT_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-T = round(get(handles.sliderT,'Value'),2);
+T = round(get(handles.sliderT,'Value'));
 set(handles.editT,'String', num2str(T));
 guidata(hObject, handles);
 
@@ -599,10 +599,10 @@ T = str2double(get(handles.editT,'String'));
 X = str2num(get(handles.editX,'String'));
 H = str2num(get(handles.editH,'String'));
 xh = [X;H]';
-N = T;
-P = 10000;
+N = T*250;
+P = 2000;
 
-S = multiHeston(S0, sigma0, r, kappa, theta, delta, rho, T, N, P);
+S = multiHeston(S0, sigma0, r, kappa, theta, delta, rho, T, N, 10000);
 v0 = multiWCEHPrice(S,xh,r);
 % set(handles.priceval,'String',num2str(v0));
 
@@ -610,13 +610,13 @@ xaxislabel = get(handles.plottmp,'String');
 
 switch xaxislabel
     case 'r'
-        [xval,price] = plotPriceHeston(S0, sigma0, -0.2:0.005:0.2, kappa, theta, delta, rho, T, N, P, xh, 'r');
+        [xval,price] = plotPriceHeston(S0, sigma0, -0.1:0.005:0.2, kappa, theta, delta, rho, T, N, P, xh, 'r');
     case 'sigma'
         [xval,price] = plotPriceHeston(S0, 0:0.005:1, r, kappa, theta, delta, rho, T, N, P, xh, 'sigma');
     case 'kappa'
-        [xval,price] = plotPriceHeston(S0, sigma0, r, 0:0.05:10, theta, delta, rho, T, N, P, xh, 'kappa');
+        [xval,price] = plotPriceHeston(S0, sigma0, r, 0:0.01:1, theta, delta, rho, T, N, P, xh, 'kappa');
     case 'theta'
-        [xval,price] = plotPriceHeston(S0, sigma0, r, kappa, 0:0.005:1, delta, rho, T, N, P, xh, 'theta');
+        [xval,price] = plotPriceHeston(S0, sigma0, r, kappa, 0:0.01:1, delta, rho, T, N, P, xh, 'theta');
     case 'delta'
         [xval,price] = plotPriceHeston(S0, sigma0, r, kappa, theta, 0:0.05:10, rho, T, N, P, xh, 'delta');
     case 'rho'
