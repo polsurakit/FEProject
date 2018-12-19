@@ -38,19 +38,36 @@ S(1,1) = S0;
 sigma = nan(N+1,1);
 sigma(1,1) = sigma0;
 
-var = sigma0^2;
-eps = mvnrnd(epsilon_mean, epsilon_cov, N);
+sigma2 = sigma0^2;
+
 for i = 1:N
-    
+    epsilons = mvnrnd(epsilon_mean, epsilon_cov);
     
     jump_condition = (rand(1) < lambda);
     S_jumpsize = eta*S(i)*jump_condition; % absolute jump size is percentage of current stock price
     
-    S(i+1) = S(i)*exp((r - 0.5 * var)*dt + sqrt(dt*var)*eps(i,1)) ...
+    
+    S(i+1) = S(i)*exp((r - 0.5 * sigma2)*dt + sqrt(dt*sigma2)*epsilons(1)) ...
         + S_jumpsize;
-    var = var + kappa*(theta - var)*dt + delta*sqrt(dt*var)*eps(i,2) ...
-        + ((1+alpha)^2 - 1)*var*jump_condition;
-    var = max(var,0); % force positive
-    sigma(i+1) = sqrt(var);
+    sigma2 = sigma2 + kappa*(theta - sigma2)*dt + delta*sqrt(dt*sigma2)*epsilons(2) ...
+        + ((1+alpha)^2 - 1)*sigma2*jump_condition;
+    sigma2 = max(sigma2,0); % force positive
+    sigma(i+1) = sqrt(sigma2);
 end
+ret = diff(log(S));
 
+figure;
+subplot(3, 1, 1);  %2*1 matrix of plots, plotting at position 1
+plot(0:dt:T, S, 'm');
+xlabel('Time');
+ylabel('Stock Price');
+
+subplot(3,1,2);
+plot(dt:dt:T,ret, 'r');
+xlabel('Time');
+ylabel('LogReturns');
+
+subplot(3,1,3);
+plot(0:dt:T,sigma, 'c');
+xlabel('Time');
+ylabel('LogReturns Volatility');

@@ -1,7 +1,17 @@
 function totalPayoff=multiWCEHPriceList(S,xh,r)
 
-%S=[[S11,S12,S13,...,S1n],[S21,S22,S23,...,S2n],...,[Sk1,Sk2,Sk3,...,Skn]]
-%xh=[x1,h1; x2,h2; x3,h3; ...; xm,hm]
+% Return realized discounted payoff given periodic asset prices
+
+% INPUT:
+% S: P x T array of asset prices resampled at each period for T periods and P simulations 
+%     i.e. [[S1_t_0, S1_t_0,... ,S1_t_N];[S2_t_0, S2_t_0,... ,S2_t_N];... ;[SP_t_0, SP_t_0, ...,SP_t_N];]
+% xh: k x 2 array with boundaries (X) in the first column, layer height (h) in the second columns
+%     i.e. [X_1, h_1; X_2, h_2;... ; X_k, h_k]
+% r: risk-free rate (asset growth rate)
+
+% OUTPUT:
+% totalPayoff: Realized discounted payoff of size P
+
 k=length(S(:,1));
 n=length(S(1,:));
 m=length(xh(:,1));

@@ -1,0 +1,14 @@
+function plotHestonAgainstSigmaDiffr(S0, sigma0, r, kappa, theta, delta, rho, T, N, P, xh)
+
+% plotPriceHeston(100, 0.5, 0.05, 0:0.01:1, 0.4^2, 0.3, -0.3, 0.00, -0.5, 1 , 5, 1250,1000, xh);
+sz = length(r);
+price = nan(sz, sd);
+for i = 1:sz
+    for j = 1:sd
+    rng(999);
+    S = multiHeston(S0, sigma0, r(i), kappa, theta(, delta, rho, T, N, P);
+    price(i) = multiWCEHPrice(S,xh,r(i));
+end
+figure;
+plot(kappa, price);
+    
