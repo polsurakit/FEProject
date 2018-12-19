@@ -588,6 +588,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.priceval,'String','Calculating');
 h = waitbar(0,'Please wait...');
+
 S0 = str2double(get(handles.editS0,'String'));
 r = str2double(get(handles.editR,'String'));
 sigma0 = str2double(get(handles.editSigma,'String'));
